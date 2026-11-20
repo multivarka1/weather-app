@@ -24,6 +24,7 @@ final class WeatherViewModel: ObservableObject {
     private let service: any WeatherServing
     private let cache: any ForecastCaching
     private var requestID = UUID()
+    private var refreshTask: Task<Void, Never>?
     init(service: any WeatherServing = WeatherService(), cache: any ForecastCaching = WeatherCache()) {
         self.service = service
         self.cache = cache
@@ -49,6 +50,11 @@ final class WeatherViewModel: ObservableObject {
         let removed = offsets.map { places[$0].id }
         places.remove(atOffsets: offsets)
         if let selected, removed.contains(selected.id) {
+            refreshTask?.cancel()
+            requestID = UUID()
+            loading = false
+            error = nil
+            cachedAt = nil
             self.selected = nil
             forecast = nil
             if let first = places.first { select(first) }
@@ -56,13 +62,20 @@ final class WeatherViewModel: ObservableObject {
     }
     func refresh() async {
         guard let place = selected else { return }
-        let id = UUID(); requestID = id
+        refreshTask?.cancel()
+        let id = UUID()
+        requestID = id
+        let task = Task { await loadForecast(for: place, requestID: id) }
+        refreshTask = task
+        await task.value
+    }
+    private func loadForecast(for place: Place, requestID id: UUID) async {
         let cached = cache.load(for: place)
         forecast = cached?.forecast
         cachedAt = cached?.savedAt
         error = nil
         loading = true
-        let proxyString = UserDefaults.standard.string(forKey: "proxyURL") ?? ""
+        let proxyString = (UserDefaults.standard.string(forKey: "proxyURL") ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         guard let url = URL(string: proxyString), !proxyString.isEmpty else {
             error = WeatherError.configuration.localizedDescription; loading = false; return
         }
@@ -74,7 +87,11 @@ final class WeatherViewModel: ObservableObject {
             forecast = result; cachedAt = nil
         } catch {
             guard requestID == id else { return }
-            self.error = error.localizedDescription
+            if (error as? URLError)?.code == .cancelled || error is CancellationError {
+                self.error = "Загрузка была прервана. Попробуйте обновить прогноз ещё раз."
+            } else {
+                self.error = error.localizedDescription
+            }
         }
         if requestID == id { loading = false }
     }

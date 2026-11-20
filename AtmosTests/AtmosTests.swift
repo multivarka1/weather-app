@@ -25,3 +25,41 @@ final class AtmosTests: XCTestCase {
         XCTAssertEqual(WeatherDisplay.icon("clearsky_night"), "moon.stars.fill")
     }
 }
+
+private struct DelayedWeatherService: WeatherServing {
+    func forecast(for place: Place, proxy: URL) async throws -> Forecast {
+        try await Task.sleep(nanoseconds: 200_000_000)
+        let json = """
+        {"properties":{"timeseries":[{"time":"2026-01-01T23:00:00Z","data":{"instant":{"details":{"air_temperature":2}}}}]}}
+        """
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return try decoder.decode(Forecast.self, from: Data(json.utf8))
+    }
+}
+
+private struct EmptyCache: ForecastCaching {
+    func load(for place: Place) -> CachedForecast? { nil }
+    func save(_ forecast: Forecast, for place: Place) {}
+}
+
+extension AtmosTests {
+    @MainActor
+    func testRefreshSurvivesCallerCancellation() async throws {
+        let previous = UserDefaults.standard.object(forKey: "proxyURL")
+        defer {
+            if let previous { UserDefaults.standard.set(previous, forKey: "proxyURL") }
+            else { UserDefaults.standard.removeObject(forKey: "proxyURL") }
+        }
+        UserDefaults.standard.set("https://example.com", forKey: "proxyURL")
+        let model = WeatherViewModel(service: DelayedWeatherService(), cache: EmptyCache())
+        model.selected = Place(name: "Test", latitude: 0, longitude: 0, timeZoneIdentifier: "UTC")
+        let caller = Task { await model.refresh() }
+        try await Task.sleep(nanoseconds: 50_000_000)
+        caller.cancel()
+        await caller.value
+        XCTAssertNil(model.error)
+        XCTAssertEqual(model.forecast?.properties.timeseries.count, 1)
+        XCTAssertFalse(model.loading)
+    }
+}
