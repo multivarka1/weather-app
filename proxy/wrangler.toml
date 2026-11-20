@@ -1,0 +1,5 @@
+name = "atmos-weather-proxy"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# Set MET_CONTACT using the Cloudflare dashboard or wrangler secret put MET_CONTACT.

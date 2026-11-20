@@ -1,0 +1,49 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		2C3C8133254C91193701080C /* ref Atmos/App/AtmosApp.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Atmos/App/AtmosApp.swift"; sourceTree = "<group>"; };
+		AED614C1FDAF8F3A1CFD3980 /* build Atmos/App/AtmosApp.swift */ = { isa = PBXBuildFile; fileRef = 2C3C8133254C91193701080C; };
+		5882895BC03DF00E032183E8 /* ref Atmos/Components/Glass.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Atmos/Components/Glass.swift"; sourceTree = "<group>"; };
+		206A582855A49D968077F51E /* build Atmos/Components/Glass.swift */ = { isa = PBXBuildFile; fileRef = 5882895BC03DF00E032183E8; };
+		3023BB43904F10DEB32CB29B /* ref Atmos/Models/Weather.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Atmos/Models/Weather.swift"; sourceTree = "<group>"; };
+		DFCCE1478F3EC8ACD3927D2E /* build Atmos/Models/Weather.swift */ = { isa = PBXBuildFile; fileRef = 3023BB43904F10DEB32CB29B; };
+		F10C1FC832B91EDEA3ABA08E /* ref Atmos/Services/LocationService.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Atmos/Services/LocationService.swift"; sourceTree = "<group>"; };
+		CDBDD5540D06CAEEC9F21FCC /* build Atmos/Services/LocationService.swift */ = { isa = PBXBuildFile; fileRef = F10C1FC832B91EDEA3ABA08E; };
+		3C1AD61BB91D5D9B897AE565 /* ref Atmos/Services/WeatherService.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Atmos/Services/WeatherService.swift"; sourceTree = "<group>"; };
+		4449D728C21A259214F728BD /* build Atmos/Services/WeatherService.swift */ = { isa = PBXBuildFile; fileRef = 3C1AD61BB91D5D9B897AE565; };
+		DAAFEF07B29D83A79CE78EAA /* ref Atmos/Views/CitiesView.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Atmos/Views/CitiesView.swift"; sourceTree = "<group>"; };
+		90BE2FDB62C900F3A0025BB4 /* build Atmos/Views/CitiesView.swift */ = { isa = PBXBuildFile; fileRef = DAAFEF07B29D83A79CE78EAA; };
+		EA06CF48759FE9C027D8E5EB /* ref Atmos/Views/HomeView.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Atmos/Views/HomeView.swift"; sourceTree = "<group>"; };
+		F2D80D888D20A08903709D67 /* build Atmos/Views/HomeView.swift */ = { isa = PBXBuildFile; fileRef = EA06CF48759FE9C027D8E5EB; };
+		5F6E31F37C239E1E3AEA0133 /* ref Atmos/Views/SettingsView.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Atmos/Views/SettingsView.swift"; sourceTree = "<group>"; };
+		9A400D675DE5A793E1084703 /* build Atmos/Views/SettingsView.swift */ = { isa = PBXBuildFile; fileRef = 5F6E31F37C239E1E3AEA0133; };
+		E8D9CE847ABC18BEAB8277C0 /* ref AtmosTests/AtmosTests.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AtmosTests/AtmosTests.swift"; sourceTree = "<group>"; };
+		BE3E5174BF0FE9C42439BB43 /* build AtmosTests/AtmosTests.swift */ = { isa = PBXBuildFile; fileRef = E8D9CE847ABC18BEAB8277C0; };
+		B9074B1E49FB5A6E382E802D /* app product */ = { isa = PBXFileReference; explicitFileType = wrapper.application; path = Atmos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2837729F05EE4B9FDCABF2CA /* test product */ = { isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = AtmosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		124F4FD8F6E77A5551F4A6BD /* root group */ = { isa = PBXGroup; children = (2C3C8133254C91193701080C, 5882895BC03DF00E032183E8, 3023BB43904F10DEB32CB29B, F10C1FC832B91EDEA3ABA08E, 3C1AD61BB91D5D9B897AE565, DAAFEF07B29D83A79CE78EAA, EA06CF48759FE9C027D8E5EB, 5F6E31F37C239E1E3AEA0133, E8D9CE847ABC18BEAB8277C0, FBDC4F23F93125BBEEAE800C); sourceTree = "<group>"; };
+		FBDC4F23F93125BBEEAE800C /* products */ = { isa = PBXGroup; children = (B9074B1E49FB5A6E382E802D, 2837729F05EE4B9FDCABF2CA); name = Products; sourceTree = "<group>"; };
+		CB1F8341FDD0D5C6400FDAF8 /* app sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (AED614C1FDAF8F3A1CFD3980, 206A582855A49D968077F51E, DFCCE1478F3EC8ACD3927D2E, CDBDD5540D06CAEEC9F21FCC, 4449D728C21A259214F728BD, 90BE2FDB62C900F3A0025BB4, F2D80D888D20A08903709D67, 9A400D675DE5A793E1084703); runOnlyForDeploymentPostprocessing = 0; };
+		D13161A084ABB15E36E9C5E4 /* test sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (BE3E5174BF0FE9C42439BB43); runOnlyForDeploymentPostprocessing = 0; };
+		2A571BD1E9ABF4F122A8E632 /* app frameworks */ = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		C99E2D31C4EA76F7C528D5F9 /* test frameworks */ = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		DE58E2B17C19600779694943 /* dependency */ = { isa = PBXTargetDependency; target = 8FC2453ED5EBF1568058C839; targetProxy = D799BAE6088A90139B415FCC; };
+		D799BAE6088A90139B415FCC /* proxy */ = { isa = PBXContainerItemProxy; containerPortal = 98F54143AB4E86B28C3AFEE0; proxyType = 1; remoteGlobalIDString = 8FC2453ED5EBF1568058C839; remoteInfo = Atmos; };
+		8FC2453ED5EBF1568058C839 /* app target */ = { isa = PBXNativeTarget; buildConfigurationList = 0A44C8537DB86E92F730200F; buildPhases = (CB1F8341FDD0D5C6400FDAF8, 2A571BD1E9ABF4F122A8E632); buildRules = (); dependencies = (); name = Atmos; productName = Atmos; productReference = B9074B1E49FB5A6E382E802D; productType = "com.apple.product-type.application"; };
+		4589F76226F600D7F9EC797E /* test target */ = { isa = PBXNativeTarget; buildConfigurationList = 7F21719030604BEA35AA9385; buildPhases = (D13161A084ABB15E36E9C5E4, C99E2D31C4EA76F7C528D5F9); buildRules = (); dependencies = (DE58E2B17C19600779694943); name = AtmosTests; productName = AtmosTests; productReference = 2837729F05EE4B9FDCABF2CA; productType = "com.apple.product-type.bundle.unit-test"; };
+		98F54143AB4E86B28C3AFEE0 /* project */ = { isa = PBXProject; attributes = { BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 2600; TargetAttributes = { 4589F76226F600D7F9EC797E = { TestTargetID = 8FC2453ED5EBF1568058C839; }; }; }; buildConfigurationList = AE9DBEB92A3A454136EF894A; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base); mainGroup = 124F4FD8F6E77A5551F4A6BD; productRefGroup = FBDC4F23F93125BBEEAE800C; projectDirPath = ""; projectRoot = ""; targets = (8FC2453ED5EBF1568058C839, 4589F76226F600D7F9EC797E); };
+		CACD8F8D7E01D03300A42FA5 /* project Debug */ = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 18.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; ENABLE_TESTABILITY = YES; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; }; name = Debug; };
+		B2C3C6A624C4C8479FDD1FBF /* project Release */ = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 18.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; SWIFT_COMPILATION_MODE = wholemodule; }; name = Release; };
+		AE9DBEB92A3A454136EF894A /* project config list */ = { isa = XCConfigurationList; buildConfigurations = (CACD8F8D7E01D03300A42FA5, B2C3C6A624C4C8479FDD1FBF); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		64576546DFB0A737B56741C0 /* app Debug */ = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 18.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.Atmos; PRODUCT_NAME = Atmos; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Atmos uses your location to show the local weather forecast."; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES; TARGETED_DEVICE_FAMILY = "1,2"; MARKETING_VERSION = 1.0; CURRENT_PROJECT_VERSION = 1; }; name = Debug; };
+		B8C42C19810BD90DB03FBF18 /* app Release */ = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 18.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.Atmos; PRODUCT_NAME = Atmos; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Atmos uses your location to show the local weather forecast."; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES; TARGETED_DEVICE_FAMILY = "1,2"; MARKETING_VERSION = 1.0; CURRENT_PROJECT_VERSION = 1; }; name = Release; };
+		0A44C8537DB86E92F730200F /* app config list */ = { isa = XCConfigurationList; buildConfigurations = (64576546DFB0A737B56741C0, B8C42C19810BD90DB03FBF18); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		D467E941328BFEC8AFCAFD28 /* test Debug */ = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 18.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.AtmosTests; PRODUCT_NAME = AtmosTests; GENERATE_INFOPLIST_FILE = YES; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Atmos.app/Atmos"; BUNDLE_LOADER = "$(TEST_HOST)"; }; name = Debug; };
+		185947923166E1741413F570 /* test Release */ = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 18.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.AtmosTests; PRODUCT_NAME = AtmosTests; GENERATE_INFOPLIST_FILE = YES; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Atmos.app/Atmos"; BUNDLE_LOADER = "$(TEST_HOST)"; }; name = Release; };
+		7F21719030604BEA35AA9385 /* test config list */ = { isa = XCConfigurationList; buildConfigurations = (D467E941328BFEC8AFCAFD28, 185947923166E1741413F570); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+	};
+	rootObject = 98F54143AB4E86B28C3AFEE0;
+}
