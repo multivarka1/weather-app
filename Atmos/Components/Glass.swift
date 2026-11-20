@@ -17,6 +17,29 @@ struct AdaptiveGlass: ViewModifier {
 }
 extension View { func adaptiveGlass() -> some View { modifier(AdaptiveGlass()) } }
 
+struct GlassToolbarButton: ViewModifier {
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if reduceTransparency {
+            content.background(Color(red: 0.12, green: 0.18, blue: 0.28), in: Circle())
+                .overlay(Circle().stroke(.white.opacity(0.45), lineWidth: 1))
+        } else if #available(iOS 26.0, *) {
+            content.glassEffect(.regular.interactive(), in: .circle)
+        } else {
+            content.background {
+                Circle()
+                    .fill(.regularMaterial)
+                    .environment(\.colorScheme, .dark)
+                    .overlay(Circle().fill(.black.opacity(0.12)))
+            }
+            .overlay(Circle().strokeBorder(.white.opacity(0.3), lineWidth: 0.75))
+            .shadow(color: .black.opacity(0.12), radius: 6, y: 2)
+        }
+    }
+}
+
 struct WeatherBackground: View {
     let code: String?
     var colors: [Color] {

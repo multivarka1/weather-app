@@ -66,8 +66,7 @@ struct HomeView: View {
             .font(.system(size: 18, weight: .semibold))
             .foregroundStyle(.white)
             .frame(width: 44, height: 44)
-            .background(.black.opacity(0.65), in: Circle())
-            .overlay(Circle().stroke(.white.opacity(0.55), lineWidth: 1))
+            .modifier(GlassToolbarButton())
             .contentShape(Circle())
     }
     func dateText(_ date: Date, zone: TimeZone, format: String) -> String {
