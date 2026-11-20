@@ -18,6 +18,15 @@ final class AtmosTests: XCTestCase {
         XCTAssertEqual(days.first?.minimum, 2)
         XCTAssertEqual(days.first?.maximum, 5)
     }
+    func testWindDirection() {
+        XCTAssertEqual(WeatherDisplay.windDirection(0), "Север")
+        XCTAssertEqual(WeatherDisplay.windDirection(22.5), "Северо-восток")
+        XCTAssertEqual(WeatherDisplay.windDirection(180), "Юг")
+        XCTAssertEqual(WeatherDisplay.windDirection(337.5), "Север")
+        XCTAssertEqual(WeatherDisplay.windDirection(360), "Север")
+        XCTAssertNil(WeatherDisplay.windDirection(-1))
+        XCTAssertNil(WeatherDisplay.windDirection(.nan))
+    }
     func testEmptyAndUnits() {
         XCTAssertTrue(forecastDays([], timeZone: .gmt).isEmpty)
         XCTAssertEqual(WeatherDisplay.temperature(0, fahrenheit: true), "32°")

@@ -44,14 +44,31 @@ struct HomeView: View {
                 }.refreshable { await model.refresh() }
             }.foregroundStyle(.white)
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) { Button { cities = true } label: { Image(systemName: "list.bullet") }.accessibilityLabel("Города") }
-                    ToolbarItem(placement: .topBarTrailing) { Button { settings = true } label: { Image(systemName: "gearshape") }.accessibilityLabel("Настройки") }
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button { cities = true } label: { toolbarIcon("list.bullet") }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel("Города")
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button { settings = true } label: { toolbarIcon("gearshape") }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel("Настройки")
+                    }
                 }
                 .toolbarColorScheme(.dark, for: .navigationBar)
                 .sheet(isPresented: $cities) { CitiesView() }
                 .sheet(isPresented: $settings) { SettingsView() }
                 .task { if model.selected != nil && model.forecast == nil { await model.refresh() } }
         }
+    }
+    func toolbarIcon(_ name: String) -> some View {
+        Image(systemName: name)
+            .font(.system(size: 18, weight: .semibold))
+            .foregroundStyle(.white)
+            .frame(width: 44, height: 44)
+            .background(.black.opacity(0.65), in: Circle())
+            .overlay(Circle().stroke(.white.opacity(0.55), lineWidth: 1))
+            .contentShape(Circle())
     }
     func dateText(_ date: Date, zone: TimeZone, format: String) -> String {
         let formatter = DateFormatter()
@@ -123,7 +140,7 @@ struct HomeView: View {
         return LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
             if let v = d.relativeHumidity { metric("Влажность", value: "\(Int(v))%", icon: "humidity") }
             if let v = d.windSpeed { metric("Ветер", value: wind(v), icon: "wind") }
-            if let v = d.windFromDirection { metric("Направление ветра", value: "\(Int(v))°", icon: "location.north") }
+            if let v = d.windFromDirection, let direction = WeatherDisplay.windDirection(v) { metric("Ветер откуда", value: direction, icon: "location.north") }
             if let v = d.windSpeedOfGust { metric("Порывы ветра", value: wind(v), icon: "wind") }
             if let v = d.airPressureAtSeaLevel { metric("Давление", value: pressure(v), icon: "barometer") }
             if let v = d.cloudAreaFraction { metric("Облачность", value: "\(Int(v))%", icon: "cloud") }

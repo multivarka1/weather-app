@@ -81,6 +81,13 @@ enum WeatherDisplay {
         guard let value else { return "—" }
         return "\(Int((fahrenheit ? value * 9 / 5 + 32 : value).rounded()))°"
     }
+    // MET Norway reports the direction the wind comes from, clockwise from north.
+    static func windDirection(_ degrees: Double) -> String? {
+        guard degrees.isFinite, (0...360).contains(degrees) else { return nil }
+        let directions = ["Север", "Северо-восток", "Восток", "Юго-восток", "Юг", "Юго-запад", "Запад", "Северо-запад"]
+        let index = Int((degrees / 45).rounded()) % directions.count
+        return directions[index]
+    }
     static func icon(_ code: String?) -> String {
         guard let code else { return "cloud" }
         let night = code.contains("night")
