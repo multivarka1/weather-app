@@ -43,19 +43,20 @@ struct HomeView: View {
                     }.padding()
                 }.refreshable { await model.refresh() }
             }.foregroundStyle(.white)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
+                .toolbar(.hidden, for: .navigationBar)
+                .safeAreaInset(edge: .top, spacing: 0) {
+                    HStack {
                         Button { cities = true } label: { toolbarIcon("list.bullet") }
                             .buttonStyle(.plain)
                             .accessibilityLabel("Города")
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
+                        Spacer()
                         Button { settings = true } label: { toolbarIcon("gearshape") }
                             .buttonStyle(.plain)
                             .accessibilityLabel("Настройки")
                     }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 6)
                 }
-                .toolbarColorScheme(.dark, for: .navigationBar)
                 .sheet(isPresented: $cities) { CitiesView() }
                 .sheet(isPresented: $settings) { SettingsView() }
                 .task { if model.selected != nil && model.forecast == nil { await model.refresh() } }
@@ -65,6 +66,7 @@ struct HomeView: View {
         Image(systemName: name)
             .font(.system(size: 18, weight: .semibold))
             .foregroundStyle(.white)
+            .shadow(color: .black.opacity(0.35), radius: 2, y: 1)
             .frame(width: 44, height: 44)
             .modifier(GlassToolbarButton())
             .contentShape(Circle())

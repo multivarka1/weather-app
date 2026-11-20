@@ -23,16 +23,16 @@ struct GlassToolbarButton: ViewModifier {
     @ViewBuilder
     func body(content: Content) -> some View {
         if reduceTransparency {
-            content.background(Color(red: 0.12, green: 0.18, blue: 0.28), in: Circle())
+            content.background(Color(red: 0.28, green: 0.48, blue: 0.64), in: Circle())
                 .overlay(Circle().stroke(.white.opacity(0.45), lineWidth: 1))
         } else if #available(iOS 26.0, *) {
             content.glassEffect(.regular.interactive(), in: .circle)
         } else {
             content.background {
                 Circle()
-                    .fill(.regularMaterial)
-                    .environment(\.colorScheme, .dark)
-                    .overlay(Circle().fill(.black.opacity(0.12)))
+                    .fill(.ultraThinMaterial)
+                    .environment(\.colorScheme, .light)
+                    .overlay(Circle().fill(.white.opacity(0.08)))
             }
             .overlay(Circle().strokeBorder(.white.opacity(0.3), lineWidth: 0.75))
             .shadow(color: .black.opacity(0.12), radius: 6, y: 2)
